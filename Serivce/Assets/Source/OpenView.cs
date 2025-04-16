@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,17 +8,22 @@ public class OpenView : MonoBehaviour
 {
     [SerializeField] private Button openButton;
 
-    public void Bind()
+    public void Bind(Action callback = null)
     {
-        openButton.onClick.AddListener(Click);
+        if (callback != null)
+            openButton.onClick.AddListener(() => callback.Invoke());
     }
-    public void Expose()
+    public void Expose(Action callback = null)
     {
-        openButton.onClick.RemoveListener(Click);
+        openButton.onClick.RemoveListener(() => callback.Invoke());
     }
 
-    private void Click()
+    public void Close()
     {
-        
+        openButton.gameObject.SetActive(false);
+    }
+    public void Open()
+    {
+        openButton.gameObject.SetActive(true);
     }
 }

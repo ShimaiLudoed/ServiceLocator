@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UISwitcher<T> : IUISwitcher where T : UIController 
@@ -17,6 +18,11 @@ public class UISwitcher<T> : IUISwitcher where T : UIController
                 {typeof(OpenController),openController as T },
                 {typeof(PanelController),panelController as T}
             };
+
+        foreach (var controller in _controllers.Values)
+        {
+            controller.SetSwitcher(this as UISwitcher<UIController>);
+        }
     }
 
     public void ChangeState<T>()

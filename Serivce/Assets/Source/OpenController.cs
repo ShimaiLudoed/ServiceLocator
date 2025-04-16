@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenController : MonoBehaviour
+public class OpenController : UIController 
 {
-    // Start is called before the first frame update
-    void Start()
+    private OpenView _open;
+
+    public OpenController(OpenView open)
     {
-        
+        _open = open;
+    }   
+
+    public override void Enter()
+    {
+        _open.Open();
+        _open.Bind(ChangeController);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        _open.Close();
+        _open.Expose(ChangeController);
+    }
+    private void ChangeController()
+    {
+        _switcher.ChangeState<PanelController>();
     }
 }

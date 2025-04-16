@@ -7,19 +7,23 @@ using UnityEngine.UI;
 public class PanelView : MonoBehaviour
 {
     [SerializeField] private Button panelButton;
+    [SerializeField] private GameObject panel;
 
     public void Bind(Action callback = null)
     {
         if (callback != null)
             panelButton.onClick.AddListener(() => callback.Invoke());
     }
-    public void Expose()
+    public void Expose(Action callback = null)
     {
-        panelButton.onClick.RemoveListener(Click);
+        panelButton.onClick.RemoveListener(() => callback.Invoke());
     }
-
-    private void Click()
+    public void Close()
     {
-        Debug.Log("Click");
+        panel.SetActive(false);
+    }
+    public void Open()
+    {
+        panel.SetActive(true);
     }
 }

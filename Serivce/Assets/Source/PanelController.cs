@@ -6,18 +6,23 @@ public class PanelController : UIController
 {
     private PanelView _panel;
 
-    public PanelController(PanelView panel, UISwitcher<UIController> switcher)
+    public PanelController(PanelView panel)
     {
         _panel = panel;
-        _switcher = switcher;
     }
     public override void Enter()
     {
-        _panel.Bind();
+        _panel.Open();
+        _panel.Bind(ChangeController);
     }
 
     public override void Exit()
     {
-        _panel.Expose();
+        _panel.Close();
+        _panel.Expose(ChangeController);
+    }
+    private void ChangeController()
+    {
+        _switcher.ChangeState<OpenController>();
     }
 }
