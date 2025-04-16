@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,10 @@ public class PanelView : MonoBehaviour
 {
     [SerializeField] private Button panelButton;
 
-    public void Bind()
+    public void Bind(Action callback = null)
     {
-        panelButton.onClick.AddListener(Click);
+        if (callback != null)
+            panelButton.onClick.AddListener(() => callback.Invoke());
     }
     public void Expose()
     {
