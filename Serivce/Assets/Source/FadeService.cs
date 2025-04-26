@@ -13,6 +13,6 @@ public class FadeService : IFadeService
 
     public void FadeOut(CanvasGroup canvas, float duration)
     {
-        canvas.DOFade(0f, duration);  
+        canvas.DOFade(0f, duration);
     }
 }
