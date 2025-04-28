@@ -5,26 +5,30 @@ using UnityEngine;
 
 public class ServiceLocator<T> : IServiceLocator where T : IService
 {
-  private readonly Dictionary<Type, T> _services = new Dictionary<Type, T>(); 
-    
-  public bool TryGetService<T>(out T service) where T : class, IService
-  {
-    service = default;
-    if (_services.ContainsKey(typeof(T)))
+    private readonly Dictionary<Type, T> _services = new Dictionary<Type, T>();
+
+    public bool TryGetService<T>(out T service) where T : class, IService 
     {
-      service =_services[typeof(T)] as T;
-      return true;
+        service = default;
+
+        if (_services.ContainsKey(typeof(T))) 
+        {
+            service = _services[typeof(T)] as T; 
+            return true;
+        }
+
+        return false;
     }
-    return false;
-  }
+    
+    public void AddService(T service)
+    {
+        _services.Add(typeof(T), service);
+    }
 
-  public void AddService (T service)
-  {
-    _services.Add(typeof(T), service);
-  }
+    public void RemoveService<T>( )
+    {
+        _services.Remove(typeof(T)); 
+    }
 
-  public void RemoveService(T service)
-  {
-    _services.Remove(typeof(T));
-  }
+   
 }

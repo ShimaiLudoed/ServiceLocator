@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class OpenView : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Button openButton;
     private IFadeService _fadeService;
     private ISoundPlayer _soundPlayer;
@@ -35,10 +36,14 @@ public class OpenView : MonoBehaviour
 
     public void Close()
     {
+        _soundPlayer.PlayCloseSound();
+        _fadeService.FadeOut(canvasGroup,1);
         openButton.gameObject.SetActive(false);
     }
     public void Open()
     {
+        _soundPlayer.PlayOpenSound();
+        _fadeService.FadeIn(canvasGroup,0);
         openButton.gameObject.SetActive(true);
     }
 }
