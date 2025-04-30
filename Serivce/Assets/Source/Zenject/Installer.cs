@@ -9,6 +9,7 @@ public class Installer : MonoInstaller
     [SerializeField] private AudioData audioData;
     [SerializeField] private PanelView panelView;
     [SerializeField] private OpenView openView;
+    [SerializeField] private PlayerView playerView;
     public override void InstallBindings()
     {
         Container.Bind<IFadeService>().To<FadeService>().AsSingle().NonLazy();
@@ -22,6 +23,10 @@ public class Installer : MonoInstaller
         Container.Bind<PanelView>().FromInstance(panelView).AsSingle().NonLazy();
         Container.Bind<OpenView>().FromInstance(openView).AsSingle().NonLazy();
 
-        Container.Bind<UISwitcher<UIController>>().AsSingle().NonLazy();    
+        Container.Bind<UISwitcher<UIController>>().AsSingle().NonLazy();
+
+        Container.Bind<PlayerView>().FromInstance(playerView).AsSingle();
+        Container.Bind<PlayerController>().AsSingle().NonLazy();    
+
     }
 }

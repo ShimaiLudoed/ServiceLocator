@@ -9,6 +9,8 @@ public class SoundPlayer : ISoundPlayer
     private readonly AudioSource _source;
     private readonly AudioClip _openClip;
     private readonly AudioClip _closeClip;
+    private readonly AudioClip _shootClip;
+    private readonly AudioClip _obstacleClip;
 
     [Inject]
     public SoundPlayer(AudioData audioData)
@@ -26,5 +28,14 @@ public class SoundPlayer : ISoundPlayer
     public void PlayCloseSound()
     {
         _source.PlayOneShot(_closeClip);
+    }
+    
+    public void PlayShootSound()
+    {
+        _source.PlayOneShot(_shootClip);
+    }
+    public void PlayObstacleSound()
+    {
+        _source.PlayOneShot(_obstacleClip);
     }
 }

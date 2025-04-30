@@ -5,7 +5,7 @@ using Zenject;
 
 public class PanelController : UIController
 {
-    private PanelView _panel;
+    private readonly PanelView _panel;
 
     [Inject]
     public PanelController(PanelView panel)
