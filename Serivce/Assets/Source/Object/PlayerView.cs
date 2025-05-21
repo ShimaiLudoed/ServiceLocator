@@ -21,9 +21,10 @@ public class PlayerView : MonoBehaviour
     {
         if(_bulletPool.TryGetFromPool(out Bullet bullet))
         {
-            bullet.transform.position=firePoint.position;
+            bullet.transform.position = firePoint.position;
+            Vector3 direction = firePoint.right;
+            bullet.transform.right = direction;
             bullet.gameObject.SetActive(true);
         }
-        Debug.Log("пиу");
     }
 }

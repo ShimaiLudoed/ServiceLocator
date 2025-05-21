@@ -9,6 +9,7 @@ public class Installer : MonoInstaller
     private IPool<Bullet> _poolBullet;
     [SerializeField] private IntData startPool;
     [SerializeField] private Bullet bulletPref;
+    [SerializeField] private TransformData transformData;
     [SerializeField] private AudioData audioData;
     [SerializeField] private PanelView panelView;
     [SerializeField] private OpenView openView;
@@ -26,9 +27,11 @@ public class Installer : MonoInstaller
         Container.Bind<PanelView>().FromInstance(panelView).AsSingle().NonLazy();
         Container.Bind<OpenView>().FromInstance(openView).AsSingle().NonLazy();
 
+        Container.Bind<TransformData>().FromInstance(transformData).AsSingle().NonLazy();
+
         Container.Bind<IntData>().FromInstance(startPool).AsSingle().NonLazy();
         Container.Bind<Bullet>().FromInstance(bulletPref).AsTransient();
-        Container.Bind<IPool<Bullet>>().To<Pool<Bullet>>().AsSingle().WithArguments(startPool.StartPool, bulletPref).NonLazy();
+        Container.Bind<IPool<Bullet>>().To<Pool<Bullet>>().AsSingle().WithArguments(Container, startPool.StartPool, bulletPref).NonLazy();
         Container.Bind<PlayerView>().FromInstance(playerView).AsSingle();
         Container.Bind<PlayerController>().AsSingle().NonLazy(); 
         
