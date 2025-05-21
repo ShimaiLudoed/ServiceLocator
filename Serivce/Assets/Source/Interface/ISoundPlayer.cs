@@ -6,4 +6,6 @@ public interface ISoundPlayer : IService
 {
   public void PlayOpenSound();
   public void PlayCloseSound();
+  public void PlayShootSound();
+  public void PlayObstacleSound();
 }

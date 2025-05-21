@@ -8,6 +8,8 @@ namespace Data
     {
         [field: SerializeField] public AudioClip CloseClip { get; private set; }
         [field: SerializeField] public AudioClip OpenClip { get; private set; }
+        [field: SerializeField] public AudioClip ShootClip { get; private set; }
+        [field: SerializeField] public AudioClip ObstacleClip { get; private set; }
         [field: SerializeField] public AudioSource AudioSource { get; private set; }
     }
 }

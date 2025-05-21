@@ -18,6 +18,8 @@ public class SoundPlayer : ISoundPlayer
         _source = audioData.AudioSource;
         _openClip = audioData.OpenClip;
         _closeClip = audioData.CloseClip;
+        _shootClip = audioData.ShootClip;
+        _obstacleClip = audioData.ObstacleClip;
     }
 
     public void PlayOpenSound()

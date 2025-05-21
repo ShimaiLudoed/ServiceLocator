@@ -15,6 +15,7 @@ public class BootStrapper : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(_UIswitcher);
         _UIswitcher.ChangeState<OpenController>();
     }
 }

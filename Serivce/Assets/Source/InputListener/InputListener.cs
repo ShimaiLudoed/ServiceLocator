@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class InputListener : MonoBehaviour
     public void Construct(PlayerController playerController)
     {
         _playerController = playerController;
+    }
+
+    private void Start()
+    {
+        Debug.Log(_playerController);
     }
 
     private void Update()

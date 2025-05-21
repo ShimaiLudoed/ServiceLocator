@@ -1,15 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerView : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bulletSpawnPoint;
-
+    [SerializeField] private Transform firePoint;
+    public IPool<Bullet> _bullka;
+    private IPool<Bullet> _bulletPool
+    {
+        get => _bullka;
+        set { _bullka = value; }
+    }
+    [Inject]
+    public void Construct(IPool<Bullet> bulletPool)
+    {
+        _bulletPool = bulletPool;
+    }
     public void Shoot()
     {
-        Debug.Log("œËÙ-œ‡Ù!");
-        //GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        if(_bulletPool.TryGetFromPool(out Bullet bullet))
+        {
+            bullet.transform.position=firePoint.position;
+            bullet.gameObject.SetActive(true);
+        }
+        Debug.Log("–ø–∏—É");
     }
 }
