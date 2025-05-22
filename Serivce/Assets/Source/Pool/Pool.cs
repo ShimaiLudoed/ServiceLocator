@@ -5,25 +5,29 @@ using Zenject;
 
 public class Pool<T> : IPool<T> where T : MonoBehaviour, IPoolable
 {
-    private readonly DiContainer _container;
+    private ISoundPlayer _soundPlayer;
+    private TransformData _transformData;
+    private Bullet.BulletFactory _bulletFactory;
     private readonly Queue<T> _pool = new();
     private readonly int _startPoolSize;
     public int Count
     {
         get { return _pool.Count; }
     }
-    public Pool(DiContainer container, int poolSize, T bullet)
+    [Inject]
+    public Pool(int poolSize, T bullet, Bullet.BulletFactory bulletFactory, TransformData michen, ISoundPlayer soundPlayer)
     {
-       _container = container;
-      _startPoolSize = poolSize;
-        Debug.Log(bullet);
-       InitPool(bullet);
+        _soundPlayer = soundPlayer;
+        _startPoolSize = poolSize;
+        _bulletFactory = bulletFactory;
+        _transformData = michen;
+        InitPool(bullet);
     }
     public void InitPool(T prefab)
     {
         for (int i = 0; i < _startPoolSize; i++)
         {
-            T bulletInit = _container.InstantiatePrefabForComponent<T>(prefab);
+            T bulletInit = _bulletFactory.Create(_soundPlayer,_transformData) as T;
             bulletInit.gameObject.SetActive(false);
             bulletInit.OnBulletDisable += ReturnToPool;
 

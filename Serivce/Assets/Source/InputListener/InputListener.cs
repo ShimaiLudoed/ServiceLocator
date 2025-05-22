@@ -14,11 +14,6 @@ public class InputListener : MonoBehaviour
         _playerController = playerController;
     }
 
-    private void Start()
-    {
-        Debug.Log(_playerController);
-    }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

@@ -31,7 +31,9 @@ public class Installer : MonoInstaller
 
         Container.Bind<IntData>().FromInstance(startPool).AsSingle().NonLazy();
         Container.Bind<Bullet>().FromInstance(bulletPref).AsTransient();
-        Container.Bind<IPool<Bullet>>().To<Pool<Bullet>>().AsSingle().WithArguments(Container, startPool.StartPool, bulletPref).NonLazy();
+        Container.BindFactory<ISoundPlayer,TransformData, Bullet, Bullet.BulletFactory>().FromComponentInNewPrefab(bulletPref)
+         .AsSingle();
+        Container.Bind<IPool<Bullet>>().To<Pool<Bullet>>().AsSingle().WithArguments(startPool.StartPool, bulletPref, transformData).NonLazy();
         Container.Bind<PlayerView>().FromInstance(playerView).AsSingle();
         Container.Bind<PlayerController>().AsSingle().NonLazy(); 
         

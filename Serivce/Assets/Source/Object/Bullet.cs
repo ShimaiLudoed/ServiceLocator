@@ -3,6 +3,7 @@ using UnityEngine;
 using Zenject;
 public class Bullet : MonoBehaviour, IPoolable
 {
+    private Transform firePoint;
     [SerializeField] private LayerMask wallMask;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
@@ -15,17 +16,16 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         _michen = transformData.Michen;
         _soundPlayer = soundPlayer;
-        Debug.Log("пиф паф " + _soundPlayer);
     }
-    private void Start() 
+    private void Start()
     {
-        Debug.Log(_soundPlayer);
         _curTime = lifetime;
         _soundPlayer.PlayShootSound();
     }
     private void Update()
     {
-        transform.position += _michen.transform.position * (speed * Time.deltaTime);
+        Vector3 finish = _michen.transform.position - transform.position;
+        transform.position += finish * (speed * Time.deltaTime);
         if (_curTime <= 0)
         {
             Disable();
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour, IPoolable
     private void Disable()
     {
         OnBulletDisable?.Invoke(this);
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
     }
     public void Obstacle()
     {
@@ -49,7 +49,11 @@ public class Bullet : MonoBehaviour, IPoolable
         if (LayerMaskCheck.ContainsLayer(wallMask, other.gameObject.layer))
         {
             Obstacle();
-            Disable(); 
+            Disable();
         }
+    }
+    public class BulletFactory : PlaceholderFactory<ISoundPlayer, TransformData, Bullet>
+    {
+
     }
 }

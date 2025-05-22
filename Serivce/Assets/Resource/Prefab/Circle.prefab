@@ -102,7 +102,7 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 64
-  speed: 1
+  speed: 0.4
   lifetime: 4
 --- !u!58 &2203451917194338314
 CircleCollider2D:

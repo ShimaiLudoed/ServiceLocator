@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3141518}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,6 +152,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1880089366}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &359854982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359854984}
+  - component: {fileID: 359854983}
+  m_Layer: 0
+  m_Name: Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &359854983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359854982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfc9eed00f298741b4218a1377167a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Player>k__BackingField: {fileID: 1880089366}
+  <Michen>k__BackingField: {fileID: 957748699}
+--- !u!4 &359854984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359854982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &397033951
 GameObject:
@@ -614,7 +660,7 @@ Transform:
   m_GameObject: {fileID: 957748696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: -0.09, z: 0}
+  m_LocalPosition: {x: 5.75, y: 1.2681308, z: 0}
   m_LocalScale: {x: 1.1679, y: 3.1241324, z: 1.1679}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1207,7 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPool: {fileID: 1759899076}
   bulletPref: {fileID: 6934460302675322276, guid: 13d9c153d077f204386f6242a0fa034c, type: 3}
-  transformData: {fileID: 0}
+  transformData: {fileID: 359854983}
   audioData: {fileID: 1025788051}
   panelView: {fileID: 1192156705}
   openView: {fileID: 397033956}
@@ -1672,7 +1718,7 @@ Transform:
   m_GameObject: {fileID: 1880089363}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.96, y: 0.10186908, z: 0}
+  m_LocalPosition: {x: -5.96, y: 1.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1692,3 +1738,4 @@ SceneRoots:
   - {fileID: 1759899077}
   - {fileID: 1880089366}
   - {fileID: 957748699}
+  - {fileID: 359854984}
